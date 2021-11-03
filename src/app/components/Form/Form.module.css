@@ -1,0 +1,23 @@
+.form {
+  display: grid;
+  row-gap: 0.6rem;
+  text-align: center;
+}
+
+.textinput,
+.select {
+  text-align: center;
+  background-color: #fff;
+  display: inline-block;
+  outline: var(--input-outline);
+  border: var(--input-border);
+  font-family: var(--input-font);
+}
+
+.submitbutton {
+  background-color: #fce806;
+  display: inline-block;
+  outline: var(--input-outline);
+  border: var(--input-border);
+  font-family: var(--input-font);
+}

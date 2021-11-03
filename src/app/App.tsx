@@ -1,12 +1,21 @@
 import React from 'react';
 import styles from './App.module.css';
+import Title from './components/Title/Title';
 
 function App(): JSX.Element {
   return (
     <main className={styles.container}>
       <div>
-        <h1 className={styles.title}>Bergfest</h1>
+        <Title />
         <form className={styles.form}>
+          <select>
+            <option>Select participant</option>
+            <option>Alice P</option>
+            <option>Alice S</option>
+            <option>Manuel F</option>
+            <option>Riitta</option>
+          </select>
+          or create new
           <input
             className={styles.textinput}
             type="text"
@@ -17,7 +26,11 @@ function App(): JSX.Element {
             type="text"
             placeholder="last name"
           />
-          <input className={styles.submitbutton} type="submit" />
+          <input
+            className={styles.submitbutton}
+            type="submit"
+            value="register"
+          />
         </form>
       </div>
       <img

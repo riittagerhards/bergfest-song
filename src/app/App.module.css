@@ -10,14 +10,10 @@
   object-fit: cover;
 }
 
-.title {
-  text-transform: uppercase;
-  color: #05490e;
-}
-
 .form {
   display: grid;
-  row-gap: 0.5rem;
+  row-gap: 0.6rem;
+  text-align: center;
 }
 
 .textinput {

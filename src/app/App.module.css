@@ -1,0 +1,36 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  place-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.title {
+  text-transform: uppercase;
+  color: #05490e;
+}
+
+.form {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.textinput {
+  text-align: center;
+  background-color: #fff;
+  display: inline-block;
+  outline: 2px solid#fce806;
+  border: 1px solid #fff;
+}
+
+.submitbutton {
+  background-color: #fce806;
+  display: inline-block;
+  outline: 2px solid#fce806;
+  border: 1px solid #fff;
+}

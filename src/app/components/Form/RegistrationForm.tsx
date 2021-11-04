@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import styles from './Form.module.css';
+import React, { FormEvent, useState } from 'react';
+import styles from './RegistrationForm.module.css';
 
 type Participant = {
   id: number;
@@ -7,17 +7,17 @@ type Participant = {
   lastName: string;
 };
 
-function Form(): JSX.Element {
+type RegistrationProps = {
+  onSelectParticipantName: (participantName: string) => void;
+};
+
+function RegistrationForm({
+  onSelectParticipantName,
+}: RegistrationProps): JSX.Element {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [disable, setDisable] = useState(false);
-  const [selectedName, setSelectedName] = useState('');
-
-  function handleChange(event: ChangeEvent<HTMLSelectElement>) {
-    setSelectedName(event.target.value);
-    alert('Hi ' + event.target.value);
-  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -51,9 +51,8 @@ function Form(): JSX.Element {
     <form className={styles.form} onSubmit={handleSubmit}>
       <select
         className={styles.select}
-        value={selectedName}
         onClick={handleSelectClick}
-        onChange={handleChange}
+        onChange={(event) => onSelectParticipantName(event.target.value)}
       >
         <option>Select participant</option>
         {participantOptions}
@@ -83,4 +82,4 @@ function Form(): JSX.Element {
   );
 }
 
-export default Form;
+export default RegistrationForm;

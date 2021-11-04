@@ -11,6 +11,12 @@ function Form(): JSX.Element {
   const [lastName, setLastName] = useState('');
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [disable, setDisable] = useState(false);
+  const [selectedName, setSelectedName] = useState('');
+
+  function handleChange(event) {
+    setSelectedName(event.target.value);
+    alert('Hi ' + selectedName);
+  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -42,7 +48,11 @@ function Form(): JSX.Element {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <select className={styles.select} onClick={handleSelectClick}>
+      <select
+        className={styles.select}
+        onClick={handleSelectClick}
+        onChange={handleChange}
+      >
         <option>Select participant</option>
         {participantOptions}
       </select>

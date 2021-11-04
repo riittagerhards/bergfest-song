@@ -21,3 +21,7 @@
   border: var(--input-border);
   font-family: var(--input-font);
 }
+
+.submitbutton:hover {
+  background-color: #4cb440b7;
+}

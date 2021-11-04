@@ -1,7 +1,8 @@
-import React, { FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './Form.module.css';
 
 type Participant = {
+  id: number;
   firstName: string;
   lastName: string;
 };
@@ -13,9 +14,9 @@ function Form(): JSX.Element {
   const [disable, setDisable] = useState(false);
   const [selectedName, setSelectedName] = useState('');
 
-  function handleChange(event) {
+  function handleChange(event: ChangeEvent<HTMLSelectElement>) {
     setSelectedName(event.target.value);
-    alert('Hi ' + selectedName);
+    alert('Hi ' + event.target.value);
   }
 
   function handleSubmit(event: FormEvent) {
@@ -40,8 +41,8 @@ function Form(): JSX.Element {
     setParticipants(newParticipants);
   }
 
-  const participantOptions = participants.map((participant: Participant) => (
-    <option>
+  const participantOptions = participants.map((participant) => (
+    <option key={participant.id}>
       {participant.firstName} {participant.lastName}
     </option>
   ));
@@ -50,6 +51,7 @@ function Form(): JSX.Element {
     <form className={styles.form} onSubmit={handleSubmit}>
       <select
         className={styles.select}
+        value={selectedName}
         onClick={handleSelectClick}
         onChange={handleChange}
       >

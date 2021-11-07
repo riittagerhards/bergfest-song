@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './App.module.css';
 import Title from './components/Title/Title';
-import RegistrationForm from './components/Form/RegistrationForm';
+import RegistrationForm from './components/RegistrationForm/RegistrationForm';
+import SongListForm from './components/SongList/SongList';
 import Image from './components/Image/Image';
 
 function App(): JSX.Element {
@@ -11,7 +12,7 @@ function App(): JSX.Element {
   let content;
 
   if (selectedName) {
-    content = <p>Please add some songs</p>;
+    content = <SongListForm />;
   } else {
     content = <RegistrationForm onSelectParticipantName={setSelectedName} />;
   }

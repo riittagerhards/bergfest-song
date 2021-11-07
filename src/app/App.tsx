@@ -12,7 +12,7 @@ function App(): JSX.Element {
   let content;
 
   if (selectedName) {
-    content = <SongListForm />;
+    content = <SongListForm onSelectedUserName={setSelectedName} />;
   } else {
     content = <RegistrationForm onSelectParticipantName={setSelectedName} />;
   }

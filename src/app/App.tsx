@@ -6,7 +6,9 @@ import SongListForm from './components/SongList/SongList';
 import Image from './components/Image/Image';
 
 function App(): JSX.Element {
-  const [selectedName, setSelectedName] = useState<string | null>(null);
+  const [selectedName, setSelectedName] = useState<string | null>(
+    localStorage.getItem('selectedName')
+  );
 
   let content;
 
@@ -20,9 +22,25 @@ function App(): JSX.Element {
     document.title = selectedName ? `Hi ${selectedName}` : 'Bergfest';
   });
 
+  useEffect(() => {
+    if (selectedName) {
+      localStorage.setItem('selectedName', selectedName);
+    } else {
+      localStorage.removeItem('selectedName');
+    }
+  }, [selectedName]);
+
   return (
     <main className={styles.container}>
       <div>
+        {selectedName && (
+          <button
+            className={styles.submitbutton}
+            onClick={() => setSelectedName(null)}
+          >
+            logout
+          </button>
+        )}
         <Title text={selectedName ? `Welcome ${selectedName}` : 'Bergfest'} />
         {content}
       </div>

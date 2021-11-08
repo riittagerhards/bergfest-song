@@ -19,10 +19,10 @@ function RegistrationForm({
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [disable, setDisable] = useState(false);
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    fetch('https://json-server.machens.dev/users', {
+    await fetch('https://json-server.machens.dev/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,6 +32,9 @@ function RegistrationForm({
         lastName: lastName,
       }),
     });
+    refreshParticipants();
+    setFirstName('');
+    setLastName('');
     setDisable(true);
   }
 

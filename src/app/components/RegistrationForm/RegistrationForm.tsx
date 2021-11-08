@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import styles from './RegistrationForm.module.css';
 
 type Participant = {
@@ -19,10 +19,10 @@ function RegistrationForm({
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [disable, setDisable] = useState(false);
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
-    fetch('https://json-server.machens.dev/users', {
+    await fetch('https://json-server.machens.dev/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,14 +32,21 @@ function RegistrationForm({
         lastName: lastName,
       }),
     });
+    refreshParticipants();
+    setFirstName('');
+    setLastName('');
     setDisable(true);
   }
 
-  async function handleSelectClick() {
+  async function refreshParticipants() {
     const response = await fetch('https://json-server.machens.dev/users');
     const newParticipants = await response.json();
     setParticipants(newParticipants);
   }
+
+  useEffect(() => {
+    refreshParticipants();
+  }, []);
 
   const participantOptions = participants.map((participant) => (
     <option key={participant.id}>
@@ -51,7 +58,6 @@ function RegistrationForm({
     <form className={styles.form} onSubmit={handleSubmit}>
       <select
         className={styles.select}
-        onClick={handleSelectClick}
         onChange={(event) => onSelectParticipantName(event.target.value)}
       >
         <option>Select participant</option>

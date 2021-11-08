@@ -42,7 +42,7 @@ function SongListForm({ fullUserName }: SongListFormProps): JSX.Element {
         value={title}
         onChange={(event) => setTitle(event.target.value)}
       />
-      <input className={styles.submitbutton} type="submit" value="PLAY" />
+      <input className={styles.submitbutton} type="submit" value="GO" />
     </form>
   );
 }

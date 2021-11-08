@@ -3,3 +3,11 @@
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   place-items: center;
 }
+
+.submitbutton {
+  background-color: #fce806;
+  display: inline-block;
+  outline: var(--input-outline);
+  border: var(--input-border);
+  font-family: var(--input-font);
+}

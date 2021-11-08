@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import styles from './RegistrationForm.module.css';
 
 type Participant = {
@@ -35,11 +35,15 @@ function RegistrationForm({
     setDisable(true);
   }
 
-  async function handleSelectClick() {
+  async function refreshParticipants() {
     const response = await fetch('https://json-server.machens.dev/users');
     const newParticipants = await response.json();
     setParticipants(newParticipants);
   }
+
+  useEffect(() => {
+    refreshParticipants();
+  }, []);
 
   const participantOptions = participants.map((participant) => (
     <option key={participant.id}>
@@ -51,7 +55,6 @@ function RegistrationForm({
     <form className={styles.form} onSubmit={handleSubmit}>
       <select
         className={styles.select}
-        onClick={handleSelectClick}
         onChange={(event) => onSelectParticipantName(event.target.value)}
       >
         <option>Select participant</option>

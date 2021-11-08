@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import Title from './components/Title/Title';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
@@ -7,7 +7,6 @@ import Image from './components/Image/Image';
 
 function App(): JSX.Element {
   const [selectedName, setSelectedName] = useState<string | null>(null);
-  console.log(selectedName);
 
   let content;
 
@@ -16,6 +15,10 @@ function App(): JSX.Element {
   } else {
     content = <RegistrationForm onSelectParticipantName={setSelectedName} />;
   }
+
+  useEffect(() => {
+    document.title = selectedName ? `Hi ${selectedName}` : 'Bergfest';
+  });
 
   return (
     <main className={styles.container}>
